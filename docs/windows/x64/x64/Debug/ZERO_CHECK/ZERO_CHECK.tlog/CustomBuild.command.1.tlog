@@ -1,0 +1,10 @@
+^D:\ANDROIDSTUDIO\SHAPROFILE\BUILD\WINDOWS\X64\CMAKEFILES\52206F18BCA174E76530F65C7307D6D9\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/AndroidStudio/shaprofile/windows -BD:/AndroidStudio/shaprofile/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/AndroidStudio/shaprofile/build/windows/x64/shaprofile.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
