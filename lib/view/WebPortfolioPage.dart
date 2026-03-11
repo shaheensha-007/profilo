@@ -481,6 +481,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
 
+import 'Main_pages/chatbot/chat_button.dart';
+
 class WebPortfolioPage extends StatefulWidget {
   const WebPortfolioPage({super.key});
 
@@ -523,6 +525,7 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
     bool isDesktop = width > 900;
 
     return Scaffold(
+      floatingActionButton: ChatBotButton(),
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,
       appBar: _buildGlassAppBar(isDesktop),
