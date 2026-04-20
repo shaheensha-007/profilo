@@ -51,8 +51,6 @@ app.*.map.json
 
 
 
-# assets folders
-assets
 
 # lib hide files
 lib/test/test_frame.dart
