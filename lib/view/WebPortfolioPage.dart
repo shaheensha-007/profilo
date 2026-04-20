@@ -474,7 +474,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -482,6 +481,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
 
 import 'Main_pages/chatbot/chat_button.dart';
+import 'package:shaprofile/view/pdf_viewer_screen.dart';
 
 class WebPortfolioPage extends StatefulWidget {
   const WebPortfolioPage({super.key});
@@ -514,9 +514,13 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
     }
   }
 
-  void _downloadCV() async {
-    final Uri url = Uri.parse('https://drive.google.com/file/d/1Y7x4-GeCuKRsrlSwrslf_1jVaL15y3gf/view?usp=drive_link');
-    if (!await launchUrl(url)) debugPrint('Could not launch $url');
+  void _downloadCV() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PdfViewerScreen(assetPath: 'assets/mohammed_shaheen_pk.pdf'),
+      ),
+    );
   }
 
   @override
@@ -533,13 +537,22 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
         controller: _scrollController,
         child: Column(
           children: [
-            Container(key: _homeKey, child: _buildHeroSection(width, isDesktop)),
+            Container(
+              key: _homeKey,
+              child: _buildHeroSection(width, isDesktop),
+            ),
             const SizedBox(height: 80),
             _buildSectionTitle("Experience"),
-            Container(key: _experienceKey, child: _buildExperienceSection(isDesktop)),
+            Container(
+              key: _experienceKey,
+              child: _buildExperienceSection(isDesktop),
+            ),
             const SizedBox(height: 80),
             _buildSectionTitle("Featured Projects"),
-            Container(key: _projectsKey, child: _buildProjectsSection(width, isDesktop)),
+            Container(
+              key: _projectsKey,
+              child: _buildProjectsSection(width, isDesktop),
+            ),
             const SizedBox(height: 80),
             _buildSectionTitle("Tech Stack"),
             Container(key: _skillsKey, child: _buildSkillsSection(width)),
@@ -563,7 +576,14 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("MSP.", style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w900, color: primaryColor)),
+                Text(
+                  "MSP.",
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: primaryColor,
+                  ),
+                ),
                 if (isDesktop)
                   Row(
                     children: [
@@ -575,7 +595,10 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
                     ],
                   )
                 else
-                  IconButton(onPressed: () => _scrollToSection(_footerKey), icon: Icon(Icons.menu, color: secondaryColor))
+                  IconButton(
+                    onPressed: () => _scrollToSection(_footerKey),
+                    icon: Icon(Icons.menu, color: secondaryColor),
+                  ),
               ],
             ),
           ),
@@ -590,7 +613,10 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
       child: TextButton(
         style: TextButton.styleFrom(foregroundColor: secondaryColor),
         onPressed: () => _scrollToSection(sectionKey),
-        child: Text(title, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+        child: Text(
+          title,
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }
@@ -598,7 +624,12 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
   Widget _buildHeroSection(double width, bool isDesktop) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(isDesktop ? 100 : 20, 150, isDesktop ? 100 : 20, 50),
+      padding: EdgeInsets.fromLTRB(
+        isDesktop ? 100 : 20,
+        150,
+        isDesktop ? 100 : 20,
+        50,
+      ),
       child: Flex(
         direction: isDesktop ? Axis.horizontal : Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -606,23 +637,66 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
           Expanded(
             flex: isDesktop ? 6 : 0,
             child: Column(
-              crossAxisAlignment: isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+              crossAxisAlignment: isDesktop
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(color: primaryColor.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
-                  child: Text("Flutter Developer", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: primaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Flutter Developer",
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ).animate().fadeIn().slideY(),
                 const SizedBox(height: 20),
-                Text("Mohammed\nShaheen PK", textAlign: isDesktop ? TextAlign.left : TextAlign.center, style: GoogleFonts.poppins(fontSize: isDesktop ? 60 : 36, fontWeight: FontWeight.w900, height: 1.1, color: secondaryColor)).animate().fadeIn(delay: 200.ms).slideX(),
+                Text(
+                  "Mohammed\nShaheen PK",
+                  textAlign: isDesktop ? TextAlign.left : TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: isDesktop ? 60 : 36,
+                    fontWeight: FontWeight.w900,
+                    height: 1.1,
+                    color: secondaryColor,
+                  ),
+                ).animate().fadeIn(delay: 200.ms).slideX(),
                 const SizedBox(height: 20),
-                Text("Building pixel-perfect, smooth mobile & web applications.\nSpecialized in GetX, Clean Architecture, and Interactive UI.", textAlign: isDesktop ? TextAlign.left : TextAlign.center, style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey[600], height: 1.5)).animate().fadeIn(delay: 400.ms),
+                Text(
+                  "Building pixel-perfect, smooth mobile & web applications.\nSpecialized in GetX, Clean Architecture, and Interactive UI.",
+                  textAlign: isDesktop ? TextAlign.left : TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.grey[600],
+                    height: 1.5,
+                  ),
+                ).animate().fadeIn(delay: 400.ms),
                 const SizedBox(height: 40),
                 ElevatedButton.icon(
                   onPressed: _downloadCV,
-                  style: ElevatedButton.styleFrom(backgroundColor: primaryColor, padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   icon: const Icon(Icons.download, color: Colors.white),
-                  label: const Text("Download CV", style: TextStyle(color: Colors.white)),
+                  label: const Text(
+                    "Download CV",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ).animate().scale(delay: 600.ms),
               ],
             ),
@@ -631,7 +705,18 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
           Container(
             height: isDesktop ? 350 : 250,
             width: isDesktop ? 350 : 250,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white, boxShadow: [BoxShadow(color: primaryColor.withOpacity(0.2), blurRadius: 50)], image: const DecorationImage(image: AssetImage('assets/profileweb.jpg'), fit: BoxFit.cover), border: Border.all(color: Colors.white, width: 8)),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(color: primaryColor.withOpacity(0.2), blurRadius: 50),
+              ],
+              image: const DecorationImage(
+                image: AssetImage('assets/profileweb.jpg'),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(color: Colors.white, width: 8),
+            ),
           ).animate().fadeIn(duration: 800.ms).scale(),
         ],
       ),
@@ -642,25 +727,56 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isDesktop ? 100 : 20),
       child: isDesktop
-          ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: [Expanded(child: _buildTranswarrantyCard()), const SizedBox(width: 30), Expanded(child: _buildRootsysCard())])
-          : Column(children: [_buildTranswarrantyCard(), const SizedBox(height: 20), _buildRootsysCard()]),
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: _buildTranswarrantyCard()),
+                const SizedBox(width: 30),
+                Expanded(child: _buildRootsysCard()),
+              ],
+            )
+          : Column(
+              children: [
+                _buildTranswarrantyCard(),
+                const SizedBox(height: 20),
+                _buildRootsysCard(),
+              ],
+            ),
     );
   }
 
-  Widget _buildTranswarrantyCard() => const _HoverCard(title: "Mobile Application Developer (Flutter)", company: "Transwarranty Finance", location: "Kochi, India", date: "July 2023 - Present", desc: "Developed an agent-based mobile application for a financial services company. Enabled features for customers to apply for loans. Focused on improving agent-customer experience. Built high-performance interface using Flutter.", color: Colors.blueAccent);
-  Widget _buildRootsysCard() => const _HoverCard(title: "Mobile Application Developer (Flutter)", company: "Rootsys International", location: "Malappuram, India", date: "March 2022 - June 2023", desc: "Gained hands-on experience in real-world software projects. Worked with Flutter and Python. Collaborated on innovative software solutions and gained exposure to MERN stack.", color: Colors.orangeAccent);
+  Widget _buildTranswarrantyCard() => const _HoverCard(
+    title: "Mobile Application Developer (Flutter)",
+    company: "Transwarranty Finance",
+    location: "Kochi, India",
+    date: "July 2023 - Present",
+    desc:
+        "Developed an agent-based mobile application for a financial services company. Enabled features for customers to apply for loans. Focused on improving agent-customer experience. Built high-performance interface using Flutter.",
+    color: Colors.blueAccent,
+  );
+  Widget _buildRootsysCard() => const _HoverCard(
+    title: "Mobile Application Developer (Flutter)",
+    company: "Rootsys International",
+    location: "Malappuram, India",
+    date: "March 2022 - June 2023",
+    desc:
+        "Gained hands-on experience in real-world software projects. Worked with Flutter and Python. Collaborated on innovative software solutions and gained exposure to MERN stack.",
+    color: Colors.orangeAccent,
+  );
 
   Widget _buildProjectsSection(double width, bool isDesktop) {
     final List<Map<String, String>> projects = [
       {
         "title": "Oroboro assisted app",
-        "desc": "Oroboro_assisted_App is a comprehensive banking application designed to manage various banking functionalities, focusing on loan-related services. The application provides a seamless user experience for customers to apply for loans, track loan status, and manage repayments, along with other essential banking operations.",
+        "desc":
+            "Oroboro_assisted_App is a comprehensive banking application designed to manage various banking functionalities, focusing on loan-related services. The application provides a seamless user experience for customers to apply for loans, track loan status, and manage repayments, along with other essential banking operations.",
         "tech": "Flutter • Firebase • Bloc • REST API",
         "link": "https://github.com/shaheensha-007/oroboro_assisted_app",
       },
       {
         "title": "Vertex broking",
-        "desc": "Vertex Broking App is an all-in-one stock market and investment platform offering real-time market data for stocks, F&O, and mutual funds. The app provides community insights, detailed market reports with view and download options, and live trading features including open and close trades. Users can open a Demat account in minutes directly within the app, making investing simple, fast, and secure",
+        "desc":
+            "Vertex Broking App is an all-in-one stock market and investment platform offering real-time market data for stocks, F&O, and mutual funds. The app provides community insights, detailed market reports with view and download options, and live trading features including open and close trades. Users can open a Demat account in minutes directly within the app, making investing simple, fast, and secure",
         "tech": "Flutter • Get-x  • Clean Architecture • Firebase ",
         "link": "https://github.com/shaheensha-007",
       },
@@ -669,30 +785,60 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isDesktop ? 100 : 20),
       child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              children: projects.asMap().entries.map((entry) {
-                return SizedBox(
-                  width: isDesktop ? (constraints.maxWidth - 50) / 3 : constraints.maxWidth,
-                  child: _ProjectCard(project: entry.value, index: entry.key, primaryColor: primaryColor),
-                );
-              }).toList(),
-            );
-          }
+        builder: (context, constraints) {
+          return Wrap(
+            spacing: 25,
+            runSpacing: 25,
+            children: projects.asMap().entries.map((entry) {
+              return SizedBox(
+                width: isDesktop
+                    ? (constraints.maxWidth - 50) / 3
+                    : constraints.maxWidth,
+                child: _ProjectCard(
+                  project: entry.value,
+                  index: entry.key,
+                  primaryColor: primaryColor,
+                ),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }
 
   Widget _buildSkillsSection(double width) {
-    final skills = ['Flutter', 'Dart', 'Firebase', 'GetX', 'Riverpod', 'REST APIs', 'Git', 'UI/UX', 'Bloc', 'Clean Architecture'];
+    final skills = [
+      'Flutter',
+      'Dart',
+      'Firebase',
+      'GetX',
+      'Riverpod',
+      'REST APIs',
+      'Git',
+      'UI/UX',
+      'Bloc',
+      'Clean Architecture',
+    ];
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: width > 800 ? 150 : 20),
       child: Wrap(
-        spacing: 15, runSpacing: 15, alignment: WrapAlignment.center,
-        children: skills.map((skill) => Chip(backgroundColor: Colors.white, label: Text(skill, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)), avatar: Icon(Icons.verified, color: primaryColor, size: 18)).animate().fadeIn().scale()).toList(),
+        spacing: 15,
+        runSpacing: 15,
+        alignment: WrapAlignment.center,
+        children: skills
+            .map(
+              (skill) => Chip(
+                backgroundColor: Colors.white,
+                label: Text(
+                  skill,
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                ),
+                avatar: Icon(Icons.verified, color: primaryColor, size: 18),
+              ).animate().fadeIn().scale(),
+            )
+            .toList(),
       ),
     );
   }
@@ -705,7 +851,14 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: Column(
         children: [
-          Text("Let's Work Together", style: GoogleFonts.poppins(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(
+            "Let's Work Together",
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -714,22 +867,46 @@ class _WebPortfolioPageState extends State<WebPortfolioPage> {
               const SizedBox(width: 20),
               _socialIcon(Icons.code, "https://github.com/shaheensha-007"),
               const SizedBox(width: 20),
-              _socialIcon(Icons.link, "https://linkedin.com/in/mohammedshaheenpk"),
+              _socialIcon(
+                Icons.link,
+                "https://linkedin.com/in/mohammedshaheenpk",
+              ),
             ],
           ),
           const SizedBox(height: 30),
-          const Text("© 2026 Mohammed Shaheen PK. All rights reserved.", style: TextStyle(color: Colors.white54, fontSize: 12)),
+          const Text(
+            "© 2026 Mohammed Shaheen PK. All rights reserved.",
+            style: TextStyle(color: Colors.white54, fontSize: 12),
+          ),
         ],
       ),
     );
   }
 
-  Widget _socialIcon(IconData icon, String url) => IconButton(onPressed: () async => await launchUrl(Uri.parse(url)), icon: Icon(icon, color: Colors.white), style: IconButton.styleFrom(backgroundColor: Colors.white.withOpacity(0.1)));
+  Widget _socialIcon(IconData icon, String url) => IconButton(
+    onPressed: () async => await launchUrl(Uri.parse(url)),
+    icon: Icon(icon, color: Colors.white),
+    style: IconButton.styleFrom(backgroundColor: Colors.white.withOpacity(0.1)),
+  );
 
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50),
-      child: Column(children: [Text(title.toUpperCase(), style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 2, color: primaryColor)), const SizedBox(height: 10), Container(height: 3, width: 40, color: secondaryColor)]),
+      child: Column(
+        children: [
+          Text(
+            title.toUpperCase(),
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              color: primaryColor,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Container(height: 3, width: 40, color: secondaryColor),
+        ],
+      ),
     );
   }
 }
@@ -740,7 +917,11 @@ class _ProjectCard extends StatefulWidget {
   final int index;
   final Color primaryColor;
 
-  const _ProjectCard({required this.project, required this.index, required this.primaryColor});
+  const _ProjectCard({
+    required this.project,
+    required this.index,
+    required this.primaryColor,
+  });
 
   @override
   State<_ProjectCard> createState() => _ProjectCardState();
@@ -756,15 +937,24 @@ class _ProjectCardState extends State<_ProjectCard> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.folder_open_outlined, color: widget.primaryColor, size: 40),
+          Icon(
+            Icons.folder_open_outlined,
+            color: widget.primaryColor,
+            size: 40,
+          ),
           const SizedBox(height: 20),
-          Text(widget.project['title']!, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(
+            widget.project['title']!,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 10),
           AnimatedSize(
             duration: const Duration(milliseconds: 300),
@@ -779,15 +969,37 @@ class _ProjectCardState extends State<_ProjectCard> {
           TextButton(
             onPressed: () => setState(() => isExpanded = !isExpanded),
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            child: Text(isExpanded ? "View Less" : "View More", style: TextStyle(color: widget.primaryColor, fontWeight: FontWeight.bold, fontSize: 12)),
+            child: Text(
+              isExpanded ? "View Less" : "View More",
+              style: TextStyle(
+                color: widget.primaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
           ),
           const SizedBox(height: 10),
-          Text(widget.project['tech']!, style: TextStyle(color: widget.primaryColor, fontSize: 12, fontWeight: FontWeight.bold)),
+          Text(
+            widget.project['tech']!,
+            style: TextStyle(
+              color: widget.primaryColor,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 15),
           InkWell(
             onTap: () => launchUrl(Uri.parse(widget.project['link']!)),
-            child: const Row(children: [Text("View Project", style: TextStyle(fontWeight: FontWeight.bold)), Icon(Icons.arrow_right_alt, size: 20)]),
-          )
+            child: const Row(
+              children: [
+                Text(
+                  "View Project",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Icon(Icons.arrow_right_alt, size: 20),
+              ],
+            ),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: (200 * widget.index).ms).slideY(begin: 0.2);
@@ -798,7 +1010,14 @@ class _ProjectCardState extends State<_ProjectCard> {
 class _HoverCard extends StatefulWidget {
   final String title, company, date, desc, location;
   final Color color;
-  const _HoverCard({required this.title, required this.company, required this.date, required this.desc, required this.location, required this.color});
+  const _HoverCard({
+    required this.title,
+    required this.company,
+    required this.date,
+    required this.desc,
+    required this.location,
+    required this.color,
+  });
   @override
   State<_HoverCard> createState() => _HoverCardState();
 }
@@ -808,29 +1027,90 @@ class _HoverCardState extends State<_HoverCard> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    final List<String> points = widget.desc.split('.').where((p) => p.trim().isNotEmpty).toList();
+    final List<String> points = widget.desc
+        .split('.')
+        .where((p) => p.trim().isNotEmpty)
+        .toList();
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), border: Border.all(color: isHovered ? widget.color : Colors.transparent, width: 2), boxShadow: [BoxShadow(color: isHovered ? widget.color.withOpacity(0.1) : Colors.black12, blurRadius: 10)]),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isHovered ? widget.color : Colors.transparent,
+            width: 2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: isHovered ? widget.color.withOpacity(0.1) : Colors.black12,
+              blurRadius: 10,
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(widget.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              widget.title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 4),
-            Text("${widget.company} • ${widget.location}", style: TextStyle(color: widget.color, fontWeight: FontWeight.w500)),
+            Text(
+              "${widget.company} • ${widget.location}",
+              style: TextStyle(
+                color: widget.color,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(height: 12),
             AnimatedSize(
               duration: const Duration(milliseconds: 300),
               child: isExpanded
-                  ? Column(children: points.map((p) => Padding(padding: const EdgeInsets.only(bottom: 5), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [Text("• ", style: TextStyle(color: widget.color, fontWeight: FontWeight.bold)), Expanded(child: Text(p.trim(), style: const TextStyle(height: 1.5)))]))).toList())
-                  : Text(widget.desc, maxLines: 2, overflow: TextOverflow.ellipsis),
+                  ? Column(
+                      children: points
+                          .map(
+                            (p) => Padding(
+                              padding: const EdgeInsets.only(bottom: 5),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "• ",
+                                    style: TextStyle(
+                                      color: widget.color,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      p.trim(),
+                                      style: const TextStyle(height: 1.5),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    )
+                  : Text(
+                      widget.desc,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
             ),
-            Align(alignment: Alignment.centerRight, child: TextButton(onPressed: () => setState(() => isExpanded = !isExpanded), child: Text(isExpanded ? "View Less" : "View More"))),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () => setState(() => isExpanded = !isExpanded),
+                child: Text(isExpanded ? "View Less" : "View More"),
+              ),
+            ),
           ],
         ),
       ),

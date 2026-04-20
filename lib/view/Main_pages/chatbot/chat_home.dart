@@ -89,7 +89,7 @@ class _ChatHomeState extends State<ChatHome> with TickerProviderStateMixin{
 
   Future<String>_callopenRouterApi(String message)async{
     final headers={
-      'Authorization':'Bearer$_apikey',
+      'Authorization':'Bearer $_apikey',
       'Content-Type':'application/json',
       'HTTP-Referer':"https://myportfolio-fb771.web.app/",
       'X-Title':'AI Chat Assistant',
@@ -99,7 +99,7 @@ class _ChatHomeState extends State<ChatHome> with TickerProviderStateMixin{
     final body =jsonEncode({
       'model':'google/gemma-3-4b-it:free',
       'messages':[
-        {'role':'system','content':'You are a helpful AI assistant. Please Provide concise'},
+        {'role':'system','content':'You are a helpful AI assistant. Please Provide concise answers.'},
         {'role':'user','content':message},
       ],
       'max_tokens':2000,
@@ -113,9 +113,9 @@ class _ChatHomeState extends State<ChatHome> with TickerProviderStateMixin{
 
     if(response.statusCode==200){
       final data =jsonDecode(response.body);
-      return data['choice'][0]['message']['Content'];
+      return data['choices'][0]['message']['content'];
     }else {
-      throw Exception('Faild to load response:: ${response.statusCode}');
+      throw Exception('Failed to load response:: ${response.statusCode} - ${response.body}');
     }
   }
 
