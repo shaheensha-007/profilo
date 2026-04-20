@@ -1,19 +1,22 @@
-# shaprofile
+# Flutter Web Portfolio 🚀
 
-A new Flutter project.
+This project is a Flutter Web application showcasing my portfolio, skills, and projects as a Flutter Developer.
 
-## Getting Started
+## 🌐 Overview
+A responsive and user-friendly web application built using Flutter, designed to highlight my development experience, technical skills, and completed projects.
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- Responsive UI for all screen sizes (Desktop, Tablet, Mobile)
+- Smooth navigation and modern design
+- Projects showcase with details
+- Contact section for easy communication
+- Fast performance using Flutter Web
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Tech Stack
+- Flutter (Dart)
+- HTML / CSS (Flutter Web rendering)
+- REST API integration (if applicable)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 📁 Project Structure
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# my_resume
-# my_resume.github.io
+
