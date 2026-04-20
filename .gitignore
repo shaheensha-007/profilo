@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# same Android files
+ android/app/build.gradle.kts
+ android/build.gradle.kts
+
+
+
+# assets folders
+assets
+
+# lib hide files
+lib/test/test_frame.dart
+lib/view/Main_pages
+lib/view/pdf_viewer_screen.dart
