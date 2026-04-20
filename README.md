@@ -17,6 +17,32 @@ A responsive and user-friendly web application built using Flutter, designed to 
 - HTML / CSS (Flutter Web rendering)
 - REST API integration (if applicable)
 
-## 📁 Project Structure
+## 📸 Screenshots
+
+| Home | Experience |
+|------|----------|
+| ![](assets/screenshorts/IMG_20260420_100627.jpg.jpeg) | ![](assets/screenshorts/IMG_20260420_100656.jpg.jpeg) |
+
+| Projects  | Tech Stack / contact  |
+|-------|---------|
+| ![](assets/screenshorts/IMG_20260420_100725.jpg.jpeg) | ![](assets/screenshorts/IMG_20260420_100756.jpg.jpeg) |
+
+
+
+---
+
+## 👨‍💻 About Me
+Flutter Developer with 2+ years of experience in building cross-platform mobile and web applications.
+
+---
+
+## 🔗 Connect With Me
+- LinkedIn: https://linkedin.com/in/mohammedshaheenpk
+- Email: shaheenshaheenpk2000@gmail.com
+- phone : 8606648604
+
+---
+
+⭐ If you like this project, give it a star!
 
 
